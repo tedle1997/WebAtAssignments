@@ -663,7 +663,7 @@ function tests(property,
                   }
 
                   if (count_s != 4) {
-                    check = false
+                    check = false;
                   }
 
                   return check;
@@ -700,9 +700,9 @@ function tests(property,
             function(ft) {
                 let copy = _.cloneDeep(ft);
                 let dom = {};
-                let a = []
+                let a = [];
                 for(let x in copy) {
-                  a[x] = copy[x]
+                  a[x] = copy[x];
                 }
                 let before = a.slice();
                 display_letter_frequency(a, dom);

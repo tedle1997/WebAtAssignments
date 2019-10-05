@@ -142,7 +142,25 @@ function flatten(arr) {
  *   a. each string length is no more than `line_size` and
  *   b. doesn't contain line breaks, tabs, double spaces and initial/trailing white spaces.
  */
-function mkPrettyPrinter(line_size) {
+function mkPrettyPrinter(line_size=72) {
+ if(!Number.isInteger(line_size)) return undefined;
+ return function (s) {
+  if (typeof s !== "string") return undefined;
+  let ans = [];
+  let count = 0;
+  let acc = "";
+  let data = s.split(/\s+/);
+  for (let i = 0; i < data.length; i++){
+   if(acc.length + data[i].length < line_size){
+    acc += data[i];
+    ans.push(acc);
+    acc = "";
+   } else {
+    acc += data[i] + " ";
+   }
+  }
+  return ans;
+ }
 }
 
 /**
@@ -177,6 +195,21 @@ function mkIndenter(line_size, level) {
  * @return {number[]} An array indexed by the letter characters found in the string.
  */
 function letter_frequency(s) {
+
+ if(typeof s !== "string") return undefined;
+ let b = s.toUpperCase();
+ let ans = [];
+ let data = b.split(/\s+/);
+ for(let i = 0; i < data.length; i++){
+  for (let j = 0; j < data[i].length; j++){
+   if (typeof ans[data[i][j]] === "undefined"){
+    ans[data[i][j]] = 1;
+   } else {
+    ans[data[i][j]] += 1;
+   }
+  }
+ }
+ return ans;
 }
 
 /**
@@ -188,6 +221,18 @@ function letter_frequency(s) {
  * @return {undefined}
  */
 function display_letter_frequency(a, dom) {
+ if(!Array.isArray(a) || !(typeof dom === "object")) return undefined;
+ if(a.length===0) return undefined;
+ let b = a.slice()
+ let table = dom.createElement("table");
+ dom.appendChild(table);
+ for(let x in b){
+  let row = table.insertRow();
+  let cell1 = row.insertCell();
+  let cell2 = row.insertCell();
+  cell1.innerHTML = x;
+  cell2.innerHTML = b[x];
+ }
 }
 
 /**
