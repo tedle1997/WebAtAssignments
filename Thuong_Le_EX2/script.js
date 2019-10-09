@@ -182,7 +182,38 @@ function mkPrettyPrinter(line_size=72) {
 *     - If called with no arguments, produce an array with the lines stored so far.
 *       Internal storage must be emptied. Indentation level must not be changed.
 */
-function mkIndenter(line_size, level) {
+function mkIndenter(line_size, level=0) {
+ if(!Number.isInteger(line_size) || !Number.isInteger(level)) return undefined;
+ return function (n) {
+  if (Number.isInteger(n)) level += n;
+  if (typeof n === "boolean"){
+   if(n) return level;
+  }
+  if (typeof n === "string"){
+   let temp = n.split(/\s+/);
+   internal = [];
+   let inp = "";
+   for (let x in temp){
+    for (let i = 0; i < level; i++) {
+     y += " ";
+    }
+    if (inp.length === 0){
+     inp += y;
+    }
+    if (inp.length + temp[x] < line_size){
+     inp += temp[x] + " ";
+    } else {
+     internal.push(inp+="\n");
+     inp = "";
+    }
+   }
+  }
+  if (typeof n === "undefined"){
+   let temp = internal;
+   delete internal;
+   return temp;
+  }
+ }
 }
 
 /**
@@ -221,18 +252,19 @@ function letter_frequency(s) {
  * @return {undefined}
  */
 function display_letter_frequency(a, dom) {
- if(!Array.isArray(a) || !(typeof dom === "object")) return undefined;
- if(a.length===0) return undefined;
- let b = a.slice()
- let table = dom.createElement("table");
- dom.appendChild(table);
- for(let x in b){
-  let row = table.insertRow();
-  let cell1 = row.insertCell();
-  let cell2 = row.insertCell();
-  cell1.innerHTML = x;
-  cell2.innerHTML = b[x];
+ if(!Array.isArray(a) || !Array.isArray(dom)){
+  return undefined;
  }
+
+ var str = "<table id='table'>";
+ for(let x in a) {
+  str += "<tr id='row' style='border: solid 1px black'>";
+  str += "<td style='border: solid 1px black;'>" + x +
+      "</td><td style='border: solid 1px black;'>" + a[x] + "</td></tr>";
+ }
+ str += "</table>";
+ dom.innerHTML  = str;
+ console.log('train', )
 }
 
 /**
@@ -241,6 +273,8 @@ function display_letter_frequency(a, dom) {
  * @return {undefined}
  */
 function online_frequency_analysis(inputEl) {
+ let input = inputEl.value;
+ display_letter_frequency(letter_frequency(input), document.getElementById("frequency_table"));
 }
 
 /**
