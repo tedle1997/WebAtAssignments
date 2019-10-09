@@ -183,6 +183,7 @@ function mkPrettyPrinter(line_size=72) {
 *       Internal storage must be emptied. Indentation level must not be changed.
 */
 function mkIndenter(line_size, level) {
+
 }
 
 /**
@@ -221,18 +222,14 @@ function letter_frequency(s) {
  * @return {undefined}
  */
 function display_letter_frequency(a, dom) {
- if(!Array.isArray(a) || !(typeof dom === "object")) return undefined;
- if(a.length===0) return undefined;
- let b = a.slice()
- let table = dom.createElement("table");
- dom.appendChild(table);
- for(let x in b){
-  let row = table.insertRow();
-  let cell1 = row.insertCell();
-  let cell2 = row.insertCell();
-  cell1.innerHTML = x;
-  cell2.innerHTML = b[x];
+ if(!Array.isArray(a) ||  dom == undefined) return undefined;
+
+ let table = "<table>";
+ for(let x in a){
+  table += "<tr><td>" + x + "</td><td>" + a[x] + "</td></tr>";
  }
+ table += "</table>";
+ dom.innerHTML = table;
 }
 
 /**
@@ -241,6 +238,8 @@ function display_letter_frequency(a, dom) {
  * @return {undefined}
  */
 function online_frequency_analysis(inputEl) {
+ let input = inputEl.value;
+ display_letter_frequency(letter_frequency(input), inputEl.parentNode);
 }
 
 /**
