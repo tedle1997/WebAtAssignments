@@ -3,7 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="ab5458ed-2ab6-420d-a587-c1aad4613882" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/EX2/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/EX2/script.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/EX2/jsverify-util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EX2/qunit-compat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EX2/resources/jsverify.standalone.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EX2/resources/lodash.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EX2/resources/qunit-2.4.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EX2/resources/qunit.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EX2/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EX2/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EX2/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thuong_Le_EX1/Blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/Thuong_Le_EX1/Blog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thuong_Le_EX1/Gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/Thuong_Le_EX1/Gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thuong_Le_EX1/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Thuong_Le_EX1/Home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thuong_Le_EX1/Print.html" beforeDir="false" afterPath="$PROJECT_DIR$/Thuong_Le_EX1/Print.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thuong_Le_EX1/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Thuong_Le_EX1/styles.css" afterDir="false" />
+>>>>>>> 4ac3ed66937790c928078ab64e31c9995d76d4f2
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +42,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
@@ -38,6 +56,20 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.test.html">
+    <configuration name="test.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WebAtAssignments/EX2/test.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="script.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/EX2/script.js" working-dir="$PROJECT_DIR$/EX2">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.test.html" />
+        <item itemvalue="Node.js.script.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -61,9 +93,15 @@
       <workItem from="1569868724704" duration="6529000" />
       <workItem from="1569924373927" duration="4088000" />
       <workItem from="1570179449613" duration="12331000" />
+<<<<<<< HEAD
       <workItem from="1570317151417" duration="3607000" />
       <workItem from="1570359209469" duration="1831000" />
       <workItem from="1570534269232" duration="2037000" />
+=======
+      <workItem from="1570317151417" duration="1881000" />
+      <workItem from="1570319147003" duration="988000" />
+      <workItem from="1570320316056" duration="13315000" />
+>>>>>>> 4ac3ed66937790c928078ab64e31c9995d76d4f2
     </task>
     <servers />
   </component>
