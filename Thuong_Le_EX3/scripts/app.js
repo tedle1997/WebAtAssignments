@@ -1,25 +1,22 @@
 class App {
     constructor({canvas, buttons, brushToolbar}) {
-        this.canvas = canvas;
+        this.canvas = document.getElementById(canvas);
         this.buttons = {};
         this.buttons.clear = document.getElementById(buttons.clear);
         this.buttons.camera = document.getElementById(buttons.camera);
         this.buttons.undo = document.getElementById(buttons.undo);
-        this.brushToolbar = brushToolbar;
-
-        const context = this.canvas.getContext("2d");
-        context.strokeStyle = "black";
+        this.brushToolbar = document.getElementById(brushToolbar);
 
         this.currpos = {x:0, y:0};
         this.prevpos = {x:0, y:0};
         this.mouseIsDown = false;
         this.mouseIn = false;
 
-        this.canvas.addEventListener("mousedown", this.onMouseDown);
-        this.canvas.addEventListener("mousemove", this.onMouseMove);
-        this.canvas.addEventListener("mouseup", this.onMouseUp);
-        this.canvas.addEventListener("mouseenter",this.onMouseEnter);
-        this.canvas.addEventListener("mouseout", this.onMouseOut);
+        this.canvas.addEventListener("mousedown",(e) => this.onMouseDown(e));
+        this.canvas.addEventListener("mousemove", (e) => this.onMouseMove(e));
+        this.canvas.addEventListener("mouseup", (e) => this.onMouseUp(e));
+        this.canvas.addEventListener("mouseenter",(e) => this.onMouseEnter(e));
+        this.canvas.addEventListener("mouseout", (e)=>this.onMouseOut(e));
 
         this.context = this.canvas.getContext("2d");
         this.buttons.camera.addEventListener("click", function () {
@@ -31,6 +28,13 @@ class App {
 
 
 
+    }
+
+    updatePositions(e){
+        this.prevpos.x = this.currpos.x;
+        this.prevpos.y = this.currpos.y;
+        this.currpos.x = e.x - this.canvas.offsetLeft;
+        this.currpos.y = e.y - this.canvas.offsetTop;
     }
 
     draw(){
@@ -48,25 +52,21 @@ class App {
             this.draw();
         }
     }
-    onMouseDown(){
+    onMouseDown(e){
         this.mouseIsDown = true;
     }
-    onMouseUp(){
+    onMouseUp(e){
         this.mouseIsDown = false;
     }
     onMouseEnter(e){
         this.mouseIn = true;
         this.updatePositions(e);
     }
-    onMouseOut(){
+    onMouseOut(e){
         this.mouseIn = false;
     }
-    updatePositions(e){
-        this.prevpos.x = this.currpos.x;
-        this.prevpos.y = this.currpos.y;
-        this.currpos.x = e.x;
-        this.currpos.y = e.y;
-    }
+
+
 
     get strokeStyle(){
         return this.context.strokeStyle;
