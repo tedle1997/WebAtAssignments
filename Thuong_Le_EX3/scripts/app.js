@@ -19,17 +19,20 @@ class App {
         this.canvas.addEventListener("mouseout", (e)=>this.onMouseOut(e));
 
         this.context = this.canvas.getContext("2d");
+
         this.buttons.camera.addEventListener("click", function () {
-            const image = document.createElement("img");
-            const span = document.createElement("span");
+            var image = document.createElement("img");
+            var span = document.createElement("span");
             span.setAttribute("contenteditable", "true");
-            image.src = this.canvas.toDataURL();
+            span.appendChild(image);
+            var c = document.getElementById("canvas");
+            image.src = c.toDataURL("image/png");
+            var fav_container = document.getElementById("favourites");
+            fav_container.appendChild(span);
         });
-
-
-
     }
 
+    //doing
     updatePositions(e){
         this.prevpos.x = this.currpos.x;
         this.prevpos.y = this.currpos.y;
