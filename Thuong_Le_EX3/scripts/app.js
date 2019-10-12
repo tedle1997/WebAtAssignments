@@ -30,6 +30,12 @@ class App {
             var fav_container = document.getElementById("favourites");
             fav_container.appendChild(span);
         });
+
+        this.buttons.clear.addEventListener("click", function () {
+            var c = document.getElementById("canvas");
+            var ctx = c.getContext("2d");
+            ctx.clearRect(0,0, c.width, c.height);
+        });
     }
 
     //doing
@@ -72,20 +78,17 @@ class App {
 
 
     get strokeStyle(){
-        return this.context.strokeStyle;
+        return this.canvas.strokeStyle;
     }
 
     set strokeStyle(style){
         if(! (typeof style === "string")) throw Error("stroke style is a string");
-        this.context.strokeStyle = style;
+        this.canvas.strokeStyle = style;
     }
 
-    get defaultStrokeStyle(){
+    static defaultStrokeStyle(){
         return 'black';
     }
 
-    clear(){
-        this.context.clearRect(0,0, this.canvas.width, this.canvas.height);
-    }
 
 }
