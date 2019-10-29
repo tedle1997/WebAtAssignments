@@ -15,5 +15,10 @@ class PenBrush {
 }
 
 //TODO DiscBrush
-//TODO StarBrush
+class DiscBrush{
 
+}
+//TODO StarBrush
+class StarBrush{
+
+}
