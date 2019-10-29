@@ -23,10 +23,21 @@ let history = {
 };
 
 class Stroke{
-    constructor(brushName, prevpos, currpos){
+    stroke_sequence = [];
+    constructor(brushName){
         this.brushName = document.getElementById(brushName);
-        this.currpos = currpos;
-        this.prevpos = prevpos;
+    }
+
+    add_loc(prev_x, prev_y, curr_x, curr_y){
+        let location = {
+            prev:{x:prev_x, y:prev_y},
+            curr:{x:curr_x, y:curr_y}
+        };
+        this.stroke_sequence.push(location);
+    }
+    get stroke_sequence(){
+        return this.stroke_sequence;
     }
     
 }
+

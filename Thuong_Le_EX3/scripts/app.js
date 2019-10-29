@@ -11,6 +11,7 @@ class App {
         this.prevpos = {x:0, y:0};
         this.mouseIsDown = false;
         this.mouseIn = false;
+        this.currStroke = new Stroke();
 
         this.canvas.addEventListener("mousedown",(e) => this.onMouseDown(e));
         this.canvas.addEventListener("mousemove", (e) => this.onMouseMove(e));
@@ -35,27 +36,47 @@ class App {
             var c = document.getElementById("canvas");
             var ctx = c.getContext("2d");
             ctx.clearRect(0,0, c.width, c.height);
+            history.clear();
         });
 
         this.buttons.undo.addEventListener("click", function () {
+
+            let c = document.getElementById("canvas");
+            let ctx = c.getContext("2d");
+            ctx.clearRect(0,0, c.width, c.height);
+
             history.pop();
-            redraw();
+            for (let i = 0; i < history.paths.length; i++){
+                let sq = history.paths[i].stroke_sequence;
+                for(let j = 0; j < sq.length; j++){
+                    // console.log(sq[j].prev.x, "  ", sq[j].prev.y);
+                    // console.log(sq[j].curr.x, "  ", sq[j].curr.y);
+                    ctx.beginPath();
+                    ctx.moveTo(sq[j].prev.x, sq[j].prev.y);
+                    ctx.lineTo(sq[j].curr.x, sq[j].curr.y);
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.closePath();
+                }
+            }
         })
     }
-
     //doing
     updatePositions(e){
         this.prevpos.x = this.currpos.x;
         this.prevpos.y = this.currpos.y;
         this.currpos.x = e.x - this.canvas.offsetLeft;
         this.currpos.y = e.y - this.canvas.offsetTop;
+
+        console.log(this.currStroke);
     }
+
 
     draw(){
         this.context.beginPath();
         this.context.moveTo(this.prevpos.x, this.prevpos.y);
         this.context.lineTo(this.currpos.x, this.currpos.y);
-        history.push(new Stroke(this.brushToolbar, this.prevpos));
+        this.currStroke.add_loc(this.prevpos.x, this.prevpos.y, this.currpos.x , this.currpos.y);
         this.context.lineWidth = 2;
         this.context.stroke();
         this.context.closePath();
@@ -69,13 +90,15 @@ class App {
     }
     onMouseDown(e){
         this.mouseIsDown = true;
+        this.updatePositions(e);
     }
     onMouseUp(e){
         this.mouseIsDown = false;
+        history.push(this.currStroke);
+        this.currStroke = new Stroke();
     }
     onMouseEnter(e){
         this.mouseIn = true;
-        this.updatePositions(e);
     }
     onMouseOut(e){
         this.mouseIn = false;
