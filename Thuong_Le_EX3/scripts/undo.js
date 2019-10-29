@@ -12,7 +12,7 @@ let history = {
     push: function(stroke){
         if(stroke instanceof Stroke) {
             this.paths.push(stroke);
-        } else return null;
+        } else throw(Error);
     },
 
     clear: function(){
