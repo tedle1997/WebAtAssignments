@@ -36,6 +36,11 @@ class App {
             var ctx = c.getContext("2d");
             ctx.clearRect(0,0, c.width, c.height);
         });
+
+        this.buttons.undo.addEventListener("click", function () {
+            history.pop();
+            redraw();
+        })
     }
 
     //doing
@@ -50,6 +55,7 @@ class App {
         this.context.beginPath();
         this.context.moveTo(this.prevpos.x, this.prevpos.y);
         this.context.lineTo(this.currpos.x, this.currpos.y);
+        history.push(new Stroke(this.brushToolbar, this.prevpos));
         this.context.lineWidth = 2;
         this.context.stroke();
         this.context.closePath();
@@ -86,9 +92,7 @@ class App {
         this.canvas.strokeStyle = style;
     }
 
-    static defaultStrokeStyle(){
-        return 'black';
-    }
+    static defaultStrokeStyle = "black";
 
 
 }

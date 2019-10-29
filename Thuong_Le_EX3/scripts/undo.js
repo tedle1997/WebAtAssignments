@@ -2,7 +2,7 @@ let history = {
     paths: [],
 
     pop: function () {
-        return this.paths.pop();
+        this.paths.pop();
     },
     
     initializeNewPath: function () {
@@ -10,8 +10,9 @@ let history = {
     },
 
     push: function(stroke){
-        if(!(stroke instanceof Stroke)) return Error("Wrong type, object must be Stroke");
-        this.paths.push(stroke);
+        if(stroke instanceof Stroke) {
+            this.paths.push(stroke);
+        } else return null;
     },
 
     clear: function(){
@@ -22,8 +23,10 @@ let history = {
 };
 
 class Stroke{
-    constructor(brushName){
+    constructor(brushName, prevpos, currpos){
         this.brushName = document.getElementById(brushName);
+        this.currpos = currpos;
+        this.prevpos = prevpos;
     }
     
 }
