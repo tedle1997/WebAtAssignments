@@ -72,7 +72,7 @@ function tests() {
           return true;
         }(), true, "History push accepts Stroke instances as a parameter");
 
-        equal(history.pop()[0] === stroke, true, "Pop returns an array containing the pushed Stroke instance")
+
 
         history.initializeNewPath();
 
@@ -80,7 +80,9 @@ function tests() {
         history.push(stroke1);
         history.push(stroke2);
 
-        equal(history.pop().length, 3, "Pop returns an array containing the pushed Stroke instances")
+        equal(history.pop()[0] === stroke, true, "Pop returns an array containing the pushed Stroke instance");
+
+        equal(history.pop().length, 3, "Pop returns an array containing the pushed Stroke instances");
 
         history.initializeNewPath();
 

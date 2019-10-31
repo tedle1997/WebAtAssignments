@@ -6,6 +6,23 @@ class App {
         this.buttons.camera = document.getElementById(buttons.camera);
         this.buttons.undo = document.getElementById(buttons.undo);
         this.brushToolbar = document.getElementById(brushToolbar);
+        this.context = this.canvas.getContext("2d");
+
+        this.pen = document.createElement("button", {id : "pen"});
+        this.pen.innerHTML = "pen";
+        this.brushToolbar.appendChild(this.pen);
+        this.pen.addEventListener("click", (e) => function (e) {
+            var penBrush = new penBrush();
+            penBrush.draw(this.context, App.defaultStrokeStyle, e.x,e.y,);
+        });
+
+        this.disc = document.createElement("button", {id : "disc"});
+        this.disc.innerHTML = "disc";
+        this.brushToolbar.appendChild(this.disc);
+
+        this.star = document.createElement("button", {id : "star"});
+        this.star.innerHTML = "star";
+        this.brushToolbar.appendChild(this.star);
 
         this.currpos = {x:0, y:0};
         this.prevpos = {x:0, y:0};
@@ -19,7 +36,7 @@ class App {
         this.canvas.addEventListener("mouseenter",(e) => this.onMouseEnter(e));
         this.canvas.addEventListener("mouseout", (e)=>this.onMouseOut(e));
 
-        this.context = this.canvas.getContext("2d");
+
 
         this.buttons.camera.addEventListener("click", function () {
             var image = document.createElement("img");
@@ -59,6 +76,10 @@ class App {
                     ctx.closePath();
                 }
             }
+        })
+        
+        this.brushToolbar.addEventListener("click", function () {
+
         })
     }
     //doing

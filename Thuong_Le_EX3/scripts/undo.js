@@ -1,12 +1,12 @@
 let history = {
-    paths: [],
+    paths:[],
 
     pop: function () {
-        this.paths.pop();
+        return this.paths.pop();
     },
     
     initializeNewPath: function () {
-
+        this.paths = [];
     },
 
     push: function(stroke){
