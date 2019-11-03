@@ -25,7 +25,7 @@ let history = {
 class Stroke{
     stroke_sequence = [];
     constructor(brushName){
-        this.brushName = document.getElementById(brushName);
+        this.brushName = brushName;
     }
 
     add_loc(prev_x, prev_y, curr_x, curr_y){
@@ -38,6 +38,6 @@ class Stroke{
     get stroke_sequence(){
         return this.stroke_sequence;
     }
-    
+
 }
 

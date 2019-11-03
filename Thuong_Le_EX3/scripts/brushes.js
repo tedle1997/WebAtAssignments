@@ -5,11 +5,14 @@ class PenBrush {
         this.name = "PenBrush";
     }
 
-    draw(ctx, strokeStyle, x, y) {
-        ctx.lineJoin = ctx.lineCap = 'round';
+    draw(ctx, strokeStyle, prev, curr) {
         ctx.strokeStyle = strokeStyle;
-        ctx.lineTo(x, y);
+        ctx.beginPath();
+        ctx.moveTo(prev.x, prev.y);
+        ctx.lineTo(curr.x, curr.y);
+        ctx.lineWidth = 2;
         ctx.stroke();
+        ctx.closePath();
     }
 
 }
@@ -18,16 +21,18 @@ class PenBrush {
 class DiscBrush extends  PenBrush {
     constructor() {
         super();
-        this.name = "DiscBrush"
+        this.name = "DiscBrush";
     }
 
-    draw(ctx, strokeStyle, x, y) {
+    draw(ctx, strokeStyle, prev, curr) {
+        ctx.strokeStyle = strokeStyle;
         ctx.lineJoin = ctx.lineCap = 'round';
-        ctx.fillStyle = strokeStyle;
+        ctx.fillStyle = 'red';
         ctx.beginPath();
-        ctx.arc(x, y, 15, false, Math.PI * 2, false);
+        ctx.arc(curr.x, curr.y, 15, false, Math.PI * 2, false);
         ctx.fill();
         ctx.stroke();
+
     }
 }
 //TODO StarBrush
@@ -37,10 +42,11 @@ class StarBrush extends PenBrush {
         this.name = "StarBrush"
     }
 
-    draw(ctx, strokeStyle, x, y) {
+    draw(ctx, strokeStyle, prev, curr) {
+        ctx.strokeStyle = strokeStyle;
         var length = 15;
-
-        ctx.translate(x, y);
+        ctx.save();
+        ctx.translate(curr.x, curr.y);
         ctx.beginPath();
         ctx.rotate((Math.PI * 1 / 10));
         for (var i = 5; i--;) {
@@ -54,5 +60,7 @@ class StarBrush extends PenBrush {
         ctx.lineTo(0, length);
         ctx.closePath();
         ctx.stroke();
+        ctx.restore();
     }
 }
+
