@@ -14,10 +14,8 @@ class PenBrush {
         ctx.stroke();
         ctx.closePath();
     }
-
 }
 
-//TODO DiscBrush
 class DiscBrush extends  PenBrush {
     constructor() {
         super();
@@ -35,7 +33,7 @@ class DiscBrush extends  PenBrush {
 
     }
 }
-//TODO StarBrush
+
 class StarBrush extends PenBrush {
     constructor(){
         super();

@@ -97,7 +97,7 @@ function tests() {
 
         history.push(stroke2);  //simulate mouse move
 
-        equal(history.pop().length, 1, "Pop returns an array containing the most recent path (Expected path with 1 Stroke)")
+        equal(history.pop().stroke_sequence.length, 1, "Pop returns an array containing the most recent path (Expected path with 1 Stroke)")
 
         equal(history.pop().length, 2, "Pop returns an array containing the most recent path (Expected path with 2 Strokes)")
 
